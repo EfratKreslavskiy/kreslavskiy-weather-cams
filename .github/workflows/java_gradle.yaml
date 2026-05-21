@@ -46,6 +46,10 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build (and test) with Gradle
+        env:
+          apikey: ${{ secrets.OPENWEATHERMAP_KEY }}
+        env:
+          apikey: ${{ secrets.WINDY_API }}
         run: ./gradlew build
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v4
