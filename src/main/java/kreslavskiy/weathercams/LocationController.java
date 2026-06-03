@@ -15,13 +15,20 @@ public class LocationController
     private final JTextField location;
     private final JLabel latitude;
     private final JLabel longitude;
+    private final JLabel temperature;
+    private final JLabel feelsLike;
+    private final JLabel description;
 
-    public LocationController(OpenweathermapService owmService, JTextField location, JLabel latitude, JLabel longitude)
+    public LocationController(OpenweathermapService owmService, JTextField location, JLabel latitude, JLabel longitude,
+                                JLabel temperature, JLabel feelsLike, JLabel description)
     {
         this.owmService = owmService;
         this.location = location;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.temperature = temperature;
+        this.feelsLike = feelsLike;
+        this.description = description;
     }
 
     public void doSearch()
@@ -48,6 +55,26 @@ public class LocationController
             latitude.setText(String.valueOf(loc1.lat()));
             longitude.setText(String.valueOf(loc1.lon()));
 
+            ApiKey apiKey = new ApiKey("openweathermapKey");
+            String keyString = apiKey.get();
+            String units = "imperial";
+
+            owmService.getWeather(Double.parseDouble(loc1.lat()), Double.parseDouble(loc1.lon()), units, keyString)
+                    // tells Rx to request the data on a background Thread
+                    .subscribeOn(Schedulers.io())
+                    // tells Rx to handle the response on Swing's main Thread
+                    .observeOn(Schedulers.from(SwingUtilities:: invokeLater))
+                    .subscribe(
+                            this:: handleWeatherResponse,
+                            Throwable:: printStackTrace);
         }
     }
+
+    private void handleWeatherResponse(WeatherInfo weatherInfo)
+    {
+        temperature.setText(String.valueOf(weatherInfo.main().temp()));
+        feelsLike.setText(String.valueOf(weatherInfo.main().feels_like()));
+        description.setText(weatherInfo.weather().get(0).description());
+    }
+
 }

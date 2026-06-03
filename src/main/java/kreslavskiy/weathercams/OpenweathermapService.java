@@ -15,4 +15,12 @@ public interface OpenweathermapService
             @Query("limit") int limit,
             @Query("appid")  String apiKey);
 
+    @GET("data/2.5/weather")
+    Single<WeatherInfo> getWeather(
+            @Query("lat") double latitude,
+            @Query("lon") double longitude,
+            @Query("units") String units,
+            @Query("appid") String apiKey
+    );
+
 }

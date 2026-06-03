@@ -10,6 +10,9 @@ public class LocationFrame extends JFrame
     private final JTextField searchbar;
     private final JLabel latitudeLabel;
     private final JLabel longitudeLabel;
+    private final JLabel tempLabel;
+    private final JLabel feelsLikeLabel;
+    private final JLabel descriptionLabel;
 
     public LocationFrame()
     {
@@ -31,7 +34,7 @@ public class LocationFrame extends JFrame
         constraints = new GridBagConstraints();
         constraints.gridx = 3;
         constraints.gridy = 0;
-        JButton searchButton =  new JButton("Search");
+        JButton searchButton = new JButton("Search");
         add(searchButton, constraints);
 
         constraints = new GridBagConstraints();
@@ -58,8 +61,45 @@ public class LocationFrame extends JFrame
         JLabel longitude = new JLabel();
         add(longitude, constraints);
 
+        constraints = new GridBagConstraints();
+        constraints.gridx = 4;
+        constraints.gridy = 1;
+        tempLabel = new JLabel("Temperature (F): ");
+        add(tempLabel, constraints);
+
+        constraints = new GridBagConstraints();
+        constraints.gridx = 5;
+        constraints.gridy = 1;
+        JLabel temp = new JLabel();
+        add(temp, constraints);
+
+        constraints = new GridBagConstraints();
+        constraints.gridx = 4;
+        constraints.gridy = 2;
+        feelsLikeLabel = new JLabel("Feels Like: ");
+        add(feelsLikeLabel, constraints);
+
+        constraints = new GridBagConstraints();
+        constraints.gridx = 5;
+        constraints.gridy = 2;
+        JLabel feelsLike = new JLabel();
+        add(feelsLike, constraints);
+
+        constraints = new GridBagConstraints();
+        constraints.gridx = 4;
+        constraints.gridy = 3;
+        descriptionLabel = new JLabel("Description: ");
+        add(descriptionLabel, constraints);
+
+        constraints = new GridBagConstraints();
+        constraints.gridx = 5;
+        constraints.gridy = 3;
+        JLabel description = new JLabel();
+        add(description, constraints);
+
         OpenweathermapService owmService = new OpenweathermapServiceFactory().create();
-        LocationController locationController = new LocationController(owmService, searchbar, latitude, longitude);
+        LocationController locationController = new LocationController(owmService, searchbar, latitude, longitude,
+                                                                        temp, feelsLike, description);
 
         searchButton.addActionListener(new ActionListener()
         {
