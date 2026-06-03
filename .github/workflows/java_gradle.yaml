@@ -45,15 +45,11 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-      - name: Create apikey.properties
-        run: |
-          sudo sh -c 'echo "openweathermapKey=${{ secrets.OPENWEATHERMAP_KEY }}" > /apikey.properties'
-          sudo sh -c 'echo "windyKey=${{ secrets.WINDY_API }}" >> /apikey.properties'
 
       - name: Build (and test) with Gradle
         env:
-          owmkey: ${{ secrets.OPENWEATHERMAP_KEY }}
-          windykey: ${{ secrets.WINDY_API }}
+          openweathermapKey: ${{ secrets.OPENWEATHERMAP_KEY }}
+          windyKey: ${{ secrets.WINDY_API }}
         run: ./gradlew build
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v4
