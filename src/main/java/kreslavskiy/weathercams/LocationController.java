@@ -73,7 +73,7 @@ public class LocationController
     private void handleWeatherResponse(WeatherInfo weatherInfo)
     {
         temperature.setText(String.valueOf(weatherInfo.main().temp()));
-        feelsLike.setText(String.valueOf(weatherInfo.main().feels_like()));
+        feelsLike.setText(String.valueOf(weatherInfo.main().feelsLike()));
         description.setText(weatherInfo.weather().get(0).description());
     }
 

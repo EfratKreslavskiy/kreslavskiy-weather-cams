@@ -19,3 +19,4 @@ along with it's current temperature, "feels like", and weather description.
 - [Gradle](https://gradle.org/)
 - [FruityVice](https://fruityvice.com/)
 - [Unsplash](https://unsplash.com/)
+- [FasterXML](http://fasterxml.com/)
