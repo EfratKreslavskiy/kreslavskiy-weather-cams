@@ -1,8 +1,8 @@
 package kreslavskiy.weathercams;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
-public record MainTemp(double temp, @JsonProperty("feels_like") String feelsLike)
+public record MainTemp(double temp, @SerializedName("feels_like") String feelsLike)
 {
 }
 
