@@ -1,4 +1,5 @@
 package kreslavskiy.weathercams;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record MainTemp(double temp, @JsonProperty("feels_like") String feelsLike)
