@@ -47,8 +47,8 @@ jobs:
         run: chmod +x gradlew
       - name: Create apikey.properties
         run: |
-            echo "openweathermapKey=${{ secrets.OPENWEATHERMAP_KEY }}" > ~/apikey.properties
-            echo "windyKey=${{ secrets.WINDY_API }}" >> ~/apikey.properties
+          sudo sh -c 'echo "openweathermapKey=${{ secrets.OPENWEATHERMAP_KEY }}" > /apikey.properties'
+          sudo sh -c 'echo "windyKey=${{ secrets.WINDY_API }}" >> /apikey.properties'
 
       - name: Build (and test) with Gradle
         env:
