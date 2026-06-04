@@ -10,7 +10,7 @@ along with it's current temperature, "feels like", and weather description.
 
 ### Screenshots
 
-![name](filepath)
+![Location and Weather Info](src\main\resources\Screenshots\Screenshot1.png)
 
 #### Links
 

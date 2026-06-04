@@ -62,38 +62,38 @@ public class LocationFrame extends JFrame
         add(longitude, constraints);
 
         constraints = new GridBagConstraints();
-        constraints.gridx = 4;
-        constraints.gridy = 1;
+        constraints.gridx = 2;
+        constraints.gridy = 3;
         tempLabel = new JLabel("Temperature (F): ");
         add(tempLabel, constraints);
 
         constraints = new GridBagConstraints();
-        constraints.gridx = 5;
-        constraints.gridy = 1;
+        constraints.gridx = 3;
+        constraints.gridy = 3;
         JLabel temp = new JLabel();
         add(temp, constraints);
 
         constraints = new GridBagConstraints();
-        constraints.gridx = 4;
-        constraints.gridy = 2;
+        constraints.gridx = 2;
+        constraints.gridy = 4;
         feelsLikeLabel = new JLabel("Feels Like: ");
         add(feelsLikeLabel, constraints);
 
         constraints = new GridBagConstraints();
-        constraints.gridx = 5;
-        constraints.gridy = 2;
+        constraints.gridx = 3;
+        constraints.gridy = 4;
         JLabel feelsLike = new JLabel();
         add(feelsLike, constraints);
 
         constraints = new GridBagConstraints();
-        constraints.gridx = 4;
-        constraints.gridy = 3;
+        constraints.gridx = 2;
+        constraints.gridy = 5;
         descriptionLabel = new JLabel("Description: ");
         add(descriptionLabel, constraints);
 
         constraints = new GridBagConstraints();
-        constraints.gridx = 5;
-        constraints.gridy = 3;
+        constraints.gridx = 3;
+        constraints.gridy = 5;
         JLabel description = new JLabel();
         add(description, constraints);
 
