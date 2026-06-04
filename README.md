@@ -17,5 +17,5 @@ along with it's current temperature, "feels like", and weather description.
 - [JUnit](https://junit.org/)
 - [GridBagLayout](https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html)
 - [Gradle](https://gradle.org/)
-- [FruityVice](https://fruityvice.com/)
-- [Unsplash](https://unsplash.com/)
+- [OpenWeatherMap](https://openweathermap.org/)
+- [Windy](https://api.windy.com/)
