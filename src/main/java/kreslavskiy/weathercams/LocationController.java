@@ -119,8 +119,7 @@ public class LocationController
                     imagePanel2.add(imageLbl);
                 }
             }
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
         }
