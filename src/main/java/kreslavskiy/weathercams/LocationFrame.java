@@ -1,5 +1,8 @@
 package kreslavskiy.weathercams;
 
+import kreslavskiy.weathercams.windy.WindyService;
+import kreslavskiy.weathercams.windy.WindyServiceFactory;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -7,6 +10,8 @@ import java.awt.event.*;
 
 public class LocationFrame extends JFrame
 {
+    private final JPanel imagePanel1;
+    private final JPanel imagePanel2;
     private final JTextField searchbar;
     private final JLabel latitudeLabel;
     private final JLabel longitudeLabel;
@@ -20,86 +25,106 @@ public class LocationFrame extends JFrame
         setTitle("Weather App");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        setLayout(new GridBagLayout());
+        JPanel leftPanel = new JPanel(new GridBagLayout());
+        JPanel rightPanel = new JPanel(new GridBagLayout());
         GridBagConstraints constraints;
 
+        constraints = new  GridBagConstraints();
+        constraints.gridx = 4;
+        constraints.gridy = 0;
+        constraints.gridheight = 7;
+        imagePanel1 = new JPanel();
+        rightPanel.add(imagePanel1, constraints);
+
+        constraints = new  GridBagConstraints();
+        constraints.gridx = 4;
+        constraints.gridy = 8;
+        imagePanel2 = new JPanel();
+        rightPanel.add(imagePanel2, constraints);
+
         constraints = new GridBagConstraints();
-        constraints.gridx = 0;
+        constraints.gridx = 1;
         constraints.gridy = 0;
         constraints.gridwidth = 2;
+        constraints.weightx = 1.0;
         constraints.fill = GridBagConstraints.BOTH;
         searchbar = new JTextField("Passaic");
-        add(searchbar, constraints);
+        leftPanel.add(searchbar, constraints);
 
         constraints = new GridBagConstraints();
         constraints.gridx = 3;
         constraints.gridy = 0;
         JButton searchButton = new JButton("Search");
-        add(searchButton, constraints);
+        leftPanel.add(searchButton, constraints);
 
         constraints = new GridBagConstraints();
         constraints.gridx = 2;
         constraints.gridy = 1;
         latitudeLabel = new JLabel("Latitude: ");
-        add(latitudeLabel, constraints);
+        leftPanel.add(latitudeLabel, constraints);
 
         constraints = new GridBagConstraints();
         constraints.gridx = 3;
         constraints.gridy = 1;
         JLabel latitude = new JLabel();
-        add(latitude, constraints);
+        leftPanel.add(latitude, constraints);
 
         constraints = new GridBagConstraints();
         constraints.gridx = 2;
         constraints.gridy = 2;
         longitudeLabel = new JLabel("Longitude: ");
-        add(longitudeLabel, constraints);
+        leftPanel.add(longitudeLabel, constraints);
 
         constraints = new GridBagConstraints();
         constraints.gridx = 3;
         constraints.gridy = 2;
         JLabel longitude = new JLabel();
-        add(longitude, constraints);
+        leftPanel.add(longitude, constraints);
 
         constraints = new GridBagConstraints();
         constraints.gridx = 2;
         constraints.gridy = 3;
         tempLabel = new JLabel("Temperature (F): ");
-        add(tempLabel, constraints);
+        leftPanel.add(tempLabel, constraints);
 
         constraints = new GridBagConstraints();
         constraints.gridx = 3;
         constraints.gridy = 3;
         JLabel temp = new JLabel();
-        add(temp, constraints);
+        leftPanel.add(temp, constraints);
 
         constraints = new GridBagConstraints();
         constraints.gridx = 2;
         constraints.gridy = 4;
         feelsLikeLabel = new JLabel("Feels Like: ");
-        add(feelsLikeLabel, constraints);
+        leftPanel.add(feelsLikeLabel, constraints);
 
         constraints = new GridBagConstraints();
         constraints.gridx = 3;
         constraints.gridy = 4;
         JLabel feelsLike = new JLabel();
-        add(feelsLike, constraints);
+        leftPanel.add(feelsLike, constraints);
 
         constraints = new GridBagConstraints();
         constraints.gridx = 2;
         constraints.gridy = 5;
         descriptionLabel = new JLabel("Description: ");
-        add(descriptionLabel, constraints);
+        leftPanel.add(descriptionLabel, constraints);
 
         constraints = new GridBagConstraints();
         constraints.gridx = 3;
         constraints.gridy = 5;
         JLabel description = new JLabel();
-        add(description, constraints);
+        leftPanel.add(description, constraints);
+
+        add(leftPanel, BorderLayout.WEST);
+        add(rightPanel, BorderLayout.CENTER);
 
         OpenweathermapService owmService = new OpenweathermapServiceFactory().create();
-        LocationController locationController = new LocationController(owmService, searchbar, latitude, longitude,
-                                                                        temp, feelsLike, description);
+        WindyService windyService = new WindyServiceFactory().create();
+        LocationController locationController = new LocationController(owmService, windyService, imagePanel1,
+                                                                        imagePanel2,searchbar, latitude,
+                                                                        longitude, temp, feelsLike, description);
 
         searchButton.addActionListener(new ActionListener()
         {
