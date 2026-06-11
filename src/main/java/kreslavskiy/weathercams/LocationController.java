@@ -112,12 +112,10 @@ public class LocationController
                 String imageUrl = webcamsList.get(i).images().current().preview();
                 ImageIcon imageIcon = new ImageIcon(new URL(imageUrl));
                 JLabel imageLbl = new JLabel(imageIcon);
-                if(i < 2)
+                if (i < 2)
                 {
                     imagePanel1.add(imageLbl);
-                }
-                else
-                {
+                } else {
                     imagePanel2.add(imageLbl);
                 }
             }

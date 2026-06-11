@@ -25,8 +25,6 @@ public class LocationFrame extends JFrame
         setTitle("Weather App");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        JPanel leftPanel = new JPanel(new GridBagLayout());
-        JPanel rightPanel = new JPanel(new GridBagLayout());
         GridBagConstraints constraints;
 
         constraints = new  GridBagConstraints();
@@ -34,6 +32,7 @@ public class LocationFrame extends JFrame
         constraints.gridy = 0;
         constraints.gridheight = 7;
         imagePanel1 = new JPanel();
+        JPanel rightPanel = new JPanel(new GridBagLayout());
         rightPanel.add(imagePanel1, constraints);
 
         constraints = new  GridBagConstraints();
@@ -49,6 +48,8 @@ public class LocationFrame extends JFrame
         constraints.weightx = 1.0;
         constraints.fill = GridBagConstraints.BOTH;
         searchbar = new JTextField("Passaic");
+
+        JPanel leftPanel = new JPanel(new GridBagLayout());
         leftPanel.add(searchbar, constraints);
 
         constraints = new GridBagConstraints();
@@ -123,7 +124,7 @@ public class LocationFrame extends JFrame
         OpenweathermapService owmService = new OpenweathermapServiceFactory().create();
         WindyService windyService = new WindyServiceFactory().create();
         LocationController locationController = new LocationController(owmService, windyService, imagePanel1,
-                                                                        imagePanel2,searchbar, latitude,
+                                                                        imagePanel2, searchbar, latitude,
                                                                         longitude, temp, feelsLike, description);
 
         searchButton.addActionListener(new ActionListener()
